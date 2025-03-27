@@ -36,11 +36,20 @@
                         HeightRequest="100" />
 
                 <!-- Variable Inputs -->
-                <StackLayout Orientation="Vertical" Margin="0,10,0,0">
-                    <Entry Placeholder="Enter first number"
-                           Text="{Binding SelectedTool.Input1}" />
-                    <Entry Placeholder="Enter second number"
-                           Text="{Binding SelectedTool.Input2}" />
+                <StackLayout BindableLayout.ItemsSource="{Binding SelectedTool.Inputs}" 
+                             Margin="0,10,0,0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!-- Label on the left -->
+                                <Label Text="{Binding Label}" VerticalOptions="Center" />
+                                <!-- Input field on the right -->
+                                <Entry Text="{Binding Value, Mode=TwoWay}" 
+                                       Placeholder="Enter value" 
+                                       HorizontalOptions="FillAndExpand" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
                 </StackLayout>
 
                 <!-- Compute Button -->

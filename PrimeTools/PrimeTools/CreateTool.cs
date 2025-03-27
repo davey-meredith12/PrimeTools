@@ -1,3 +1,5 @@
+//using Org.Xml.Sax;
+
 namespace PrimeTools;
 
 public static class CreateTool
@@ -9,16 +11,26 @@ public static class CreateTool
             Name = "GCD",
             Title = "Greatest Common Divisor",
             HowItWorks = "a = qb + r\n" + "gcd(a,b) = gcd(b,r)\n" + "Go until a,b are equal or until the remainder is 0",
-            Input1 = "",
-            Input2 = "",
+            InputCount = 2,
             Result = "Result: ",
             Explanation = ""
         };
 
+        for (int i = 0; i < gcdTool.InputCount; i++)
+        {
+            InputItem item = new InputItem();
+            item.Value = "";
+            gcdTool.Inputs.Add(item);
+        }
+
+        //add names
+        gcdTool.Inputs[0].Label = "a";
+        gcdTool.Inputs[1].Label = "b";
+
         gcdTool.ComputeCommand = new Command(() =>
         {
-            if (int.TryParse(gcdTool.Input1, out int a) &&
-                int.TryParse(gcdTool.Input2, out int b) && a > 0 && b > 0)
+            if (int.TryParse(gcdTool.Inputs[0].Value, out int a) &&
+                int.TryParse(gcdTool.Inputs[1].Value, out int b) && a > 0 && b > 0)
             {
                 double gcd = Calculations.GCD(a, b);
                 gcdTool.Result = "Result: gcd(" + a + ", " + b + ") = " + gcd;
@@ -37,7 +49,7 @@ public static class CreateTool
         return gcdTool;
     }
 
-    public static Tool LinearCombinationTool()
+    /*public static Tool LinearCombinationTool()
     {
         var linearCombinationTool = new Tool
         {
@@ -49,6 +61,8 @@ public static class CreateTool
             Result = "Result: ",
             Explanation = ""
         };
+        
+        
         
         linearCombinationTool.ComputeCommand = new Command(() =>
         {
@@ -72,5 +86,5 @@ public static class CreateTool
         });
         
         return linearCombinationTool;
-    }
+    }*/
 }
