@@ -22,8 +22,10 @@ public class ViewModel : INotifyPropertyChanged
     public ViewModel()
     {
         Tool gcdTool = CreateTool.GcdTool();
+        Tool linearCombinationTool = CreateTool.LinearCombinationTool();
         
         Tools.Add(gcdTool);
+        Tools.Add(linearCombinationTool);
         SelectedTool = gcdTool;
         
         

@@ -36,4 +36,41 @@ public static class CreateTool
         
         return gcdTool;
     }
+
+    public static Tool LinearCombinationTool()
+    {
+        var linearCombinationTool = new Tool
+        {
+            Name = "Linear Combination",
+            Title = "Linear Combination",
+            HowItWorks = "ax + by = d\n" + "Given a and b, solver for x and y\n" + "where d = gcd(a, b), i.e. where ax + by = gcd(a,b)",
+            Input1 = "",
+            Input2 = "",
+            Result = "Result: ",
+            Explanation = ""
+        };
+        
+        linearCombinationTool.ComputeCommand = new Command(() =>
+        {
+            if (int.TryParse(linearCombinationTool.Input1, out int a) &&
+                int.TryParse(linearCombinationTool.Input2, out int b) && a > 0 && b > 0)
+            {
+                //(int x, int y) = Calculations.GCD(a, b);
+                int x = 12;
+                int y = 14;
+                linearCombinationTool.Result = "Result: x = " + x + ", y = " + y;
+            }
+            else
+            {
+                linearCombinationTool.Result = "Invalid input. Please enter valid numbers.";
+            }
+        });
+
+        linearCombinationTool.ExplanationCommand = new Command(() =>
+        {
+            
+        });
+        
+        return linearCombinationTool;
+    }
 }
