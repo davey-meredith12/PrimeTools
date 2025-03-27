@@ -2,40 +2,67 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PrimeTools.MainPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!--Toolbar-->
+        <ListView 
+            Grid.Column="0"
+            x:Name="ToolListView"
+            ItemsSource="{Binding Tools}"
+            SelectedItem="{Binding SelectedTool, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <!--Content Area-->
+        <ContentView Grid.Column="1">
+            <StackLayout Padding="20">
+                <!-- Tool Title -->
+                <Label Text="{Binding SelectedTool.Title}"
+                       FontSize="24"
+                       FontAttributes="Bold" />
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+                <!-- How It Works -->
+                <Label Text="How It Works:" FontAttributes="Bold" Margin="0,10,0,0" />
+                <Editor Text="{Binding SelectedTool.HowItWorks}" 
+                        IsReadOnly="True" 
+                        HeightRequest="100" />
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+                <!-- Variable Inputs -->
+                <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                    <Entry Placeholder="Enter first number"
+                           Text="{Binding SelectedTool.Input1}" />
+                    <Entry Placeholder="Enter second number"
+                           Text="{Binding SelectedTool.Input2}" />
+                </StackLayout>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                <!-- Compute Button -->
+                <Button Text="Compute"
+                        Command="{Binding SelectedTool.ComputeCommand}"
+                        Margin="0,10,0,0" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+                <!-- Result Label -->
+                <Label Text="{Binding SelectedTool.Result}"
+                       FontSize="18"
+                       Margin="0,10,0,0" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+                <!-- Explanation Button -->
+                <Button Text="Explanation"
+                        Command="{Binding SelectedTool.ExplanationCommand}"
+                        Margin="0,10,0,0" />
+            </StackLayout>
+        </ContentView>
+        
+        
+    </Grid>
+    
+    
 
 </ContentPage>
