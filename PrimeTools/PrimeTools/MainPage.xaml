@@ -5,9 +5,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
         
         <!--Toolbar-->
         <ListView 
@@ -22,8 +22,14 @@
             </ListView.ItemTemplate>
         </ListView>
         
+        <!--Vertical Line-->
+        <BoxView Grid.Column="1"
+                 WidthRequest="4"
+                 VerticalOptions="FillAndExpand"
+                 Color="DimGray"/>
+        
         <!--Content Area-->
-        <ContentView Grid.Column="1">
+        <ContentView Grid.Column="2">
             <StackLayout Padding="20">
                 <!-- Tool Title -->
                 <Label Text="{Binding SelectedTool.Title}"
