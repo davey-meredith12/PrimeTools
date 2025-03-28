@@ -23,7 +23,7 @@ public static class CreateTool
             gcdTool.Inputs.Add(item);
         }
 
-        //add names
+        //add variable names
         gcdTool.Inputs[0].Label = "a";
         gcdTool.Inputs[1].Label = "b";
 
@@ -49,29 +49,36 @@ public static class CreateTool
         return gcdTool;
     }
 
-    /*public static Tool LinearCombinationTool()
+    public static Tool LinearCombinationTool()
     {
         var linearCombinationTool = new Tool
         {
             Name = "Linear Combination",
             Title = "Linear Combination",
-            HowItWorks = "ax + by = d\n" + "Given a and b, solver for x and y\n" + "where d = gcd(a, b), i.e. where ax + by = gcd(a,b)",
-            Input1 = "",
-            Input2 = "",
+            HowItWorks = "ax + by = d\n" + "Given a and b, solve for x and y\n" + "where d = gcd(a, b), i.e. where ax + by = gcd(a,b)",
+            InputCount = 2,
             Result = "Result: ",
             Explanation = ""
         };
         
+        for (int i = 0; i < linearCombinationTool.InputCount; i++)
+        {
+            InputItem item = new InputItem();
+            item.Value = "";
+            linearCombinationTool.Inputs.Add(item);
+        }
+
+        //add variable names
+        linearCombinationTool.Inputs[0].Label = "a";
+        linearCombinationTool.Inputs[1].Label = "b";
         
         
         linearCombinationTool.ComputeCommand = new Command(() =>
         {
-            if (int.TryParse(linearCombinationTool.Input1, out int a) &&
-                int.TryParse(linearCombinationTool.Input2, out int b) && a > 0 && b > 0)
+            if (int.TryParse(linearCombinationTool.Inputs[0].Value, out int a) &&
+                int.TryParse(linearCombinationTool.Inputs[1].Value, out int b) && a > 0 && b > 0)
             {
-                //(int x, int y) = Calculations.GCD(a, b);
-                int x = 12;
-                int y = 14;
+                Calculations.LinearCombination(a, b, out int x, out int y);
                 linearCombinationTool.Result = "Result: x = " + x + ", y = " + y;
             }
             else
@@ -86,5 +93,5 @@ public static class CreateTool
         });
         
         return linearCombinationTool;
-    }*/
+    }
 }

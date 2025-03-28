@@ -26,4 +26,29 @@ public static class Calculations
 
         return a;
     }
+
+    /// <summary>
+    /// Solves ax + by = gcd(a, b). Stores the x and y result in the
+    /// variables x and y.
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <param name="x1"></param>
+    /// <param name="y"></param>
+    public static int LinearCombination(int a, int b, out int x, out int y)
+    {
+        if (b == 0)
+        {
+            x = 1;
+            y = 0;
+            return a;
+        }
+
+        int x1, y1;
+        int gcd = LinearCombination(b, a%b, out x1, out y1);
+        x = y1;
+        y = x1 - (a / b) * y1;
+
+        return gcd;
+    }
 }
