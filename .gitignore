@@ -1,9 +1,9 @@
 # Ignore everything
 *
 
-# Allow only .cs and .xml files
+# Allow only .cs and .xaml files
 !*.cs
-!*.xml
+!*.xaml
 
 # Allow directories (so Git can track files inside them)
 !*/
