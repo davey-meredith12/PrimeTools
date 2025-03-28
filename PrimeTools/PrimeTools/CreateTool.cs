@@ -94,4 +94,47 @@ public static class CreateTool
         
         return linearCombinationTool;
     }
+    
+    public static Tool EulersTotientTool()
+    {
+        var EulersTotientTool = new Tool
+        {
+            Name = "φ(n)",
+            Title = "Eulers Totient: φ(n)",
+            HowItWorks = "Explanation here",
+            InputCount = 1,
+            Result = "Result: ",
+            Explanation = ""
+        };
+
+        for (int i = 0; i < EulersTotientTool.InputCount; i++)
+        {
+            InputItem item = new InputItem();
+            item.Value = "";
+            EulersTotientTool.Inputs.Add(item);
+        }
+
+        //add variable names
+        EulersTotientTool.Inputs[0].Label = "n";
+
+        EulersTotientTool.ComputeCommand = new Command(() =>
+        {
+            if (int.TryParse(EulersTotientTool.Inputs[0].Value, out int n))
+            {
+                int result = Calculations.EulersTotient(n);
+                EulersTotientTool.Result = "Result: " + result;
+            }
+            else
+            {
+                EulersTotientTool.Result = "Invalid input. Please enter valid numbers.";
+            }
+        });
+
+        EulersTotientTool.ExplanationCommand = new Command(() => { });
+
+        return EulersTotientTool;
+    }
+    
+    
+    
 }
