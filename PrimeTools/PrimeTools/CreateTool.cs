@@ -135,6 +135,62 @@ public static class CreateTool
         return EulersTotientTool;
     }
     
+    public static Tool CrtTool()
+    {
+        var crtTool = new Tool
+        {
+            Name = "CRT",
+            Title = "Chinese Remainder Theorem",
+            HowItWorks = "Explanation here",
+            InputCount = 4,
+            Result = "Result: ",
+            Explanation = ""
+        };
+
+        for (int i = 0; i < crtTool.InputCount; i++)
+        {
+            InputItem item = new InputItem();
+            item.Value = "";
+            crtTool.Inputs.Add(item);
+        }
+
+        //add variable names
+        crtTool.Inputs[0].Label = "a";
+        crtTool.Inputs[1].Label = "b";
+        crtTool.Inputs[2].Label = "c";
+        crtTool.Inputs[3].Label = "d";
+
+        crtTool.ComputeCommand = new Command(() =>
+        {
+            if (int.TryParse(crtTool.Inputs[0].Value, out int a) &&
+                int.TryParse(crtTool.Inputs[1].Value, out int b) &&
+                int.TryParse(crtTool.Inputs[2].Value, out int c) &&
+                int.TryParse(crtTool.Inputs[3].Value, out int d) &&
+                a >= 0 && b > 0 && c >= 0 && d > 0)
+            {
+                if (Calculations.GCD(b, d) != 1)
+                {
+                    crtTool.Result = "b and d are not coprime, cannot compute.";
+                }
+                else
+                {
+                    int result = Calculations.CRT(a,b,c,d);
+                    crtTool.Result = "Result: " + result;
+                }
+                
+                
+            }
+            else
+            {
+                crtTool.Result = "Invalid input. Please enter valid numbers.";
+            }
+        });
+
+        crtTool.ExplanationCommand = new Command(() => { });
+
+        return crtTool;
+    }
+    
     
     
 }

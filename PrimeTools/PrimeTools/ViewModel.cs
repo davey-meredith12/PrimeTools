@@ -24,10 +24,12 @@ public class ViewModel : INotifyPropertyChanged
         Tool gcdTool = CreateTool.GcdTool();
         Tool linearCombinationTool = CreateTool.LinearCombinationTool();
         Tool eulersTotientTool = CreateTool.EulersTotientTool();
+        Tool crtTool = CreateTool.CrtTool();
         
         Tools.Add(gcdTool);
         Tools.Add(linearCombinationTool);
         Tools.Add(eulersTotientTool);
+        Tools.Add(crtTool);
         SelectedTool = gcdTool;
         
         

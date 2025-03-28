@@ -80,4 +80,21 @@ public static class Calculations
         return result;
     }
 
+
+    /// <summary>
+    /// Calculate the number of x s.t x = a(mod b) and x = c(mod d)
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <param name="c"></param>
+    /// <param name="d"></param>
+    /// <returns></returns>
+    public static int CRT(int a, int b, int c, int d)
+    {
+        LinearCombination(b, d, out int bInverse, out _);
+        int z = (((c-a) * bInverse) % d + d) % d; // do extra modulus work to stay positive
+        int x = a + (b * z);
+        return (x % (b * d) + (b * d)) % (b * d);
+    }
+
 }
