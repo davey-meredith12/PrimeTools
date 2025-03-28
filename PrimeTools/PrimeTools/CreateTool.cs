@@ -10,8 +10,7 @@ public static class CreateTool
         {
             Name = "GCD",
             Title = "Greatest Common Divisor",
-            HowItWorks =
-                "a = qb + r\n" + "gcd(a,b) = gcd(b,r)\n" + "Go until a,b are equal or until the remainder is 0",
+            HowItWorks = "a = qb + r\n" + "gcd(a,b) = gcd(b,r)\n" + "Go until a,b are equal or until the remainder is 0",
             InputCount = 2,
             Result = "Result: ",
             Explanation = ""
@@ -42,8 +41,11 @@ public static class CreateTool
             }
         });
 
-        gcdTool.ExplanationCommand = new Command(() => { });
-
+        gcdTool.ExplanationCommand = new Command(() =>
+        {
+            
+        });
+        
         return gcdTool;
     }
 
@@ -53,13 +55,12 @@ public static class CreateTool
         {
             Name = "Linear Combination",
             Title = "Linear Combination",
-            HowItWorks = "ax + by = d\n" + "Given a and b, solve for x and y\n" +
-                         "where d = gcd(a, b), i.e. where ax + by = gcd(a,b)",
+            HowItWorks = "ax + by = d\n" + "Given a and b, solve for x and y\n" + "where d = gcd(a, b), i.e. where ax + by = gcd(a,b)",
             InputCount = 2,
             Result = "Result: ",
             Explanation = ""
         };
-
+        
         for (int i = 0; i < linearCombinationTool.InputCount; i++)
         {
             InputItem item = new InputItem();
@@ -70,8 +71,8 @@ public static class CreateTool
         //add variable names
         linearCombinationTool.Inputs[0].Label = "a";
         linearCombinationTool.Inputs[1].Label = "b";
-
-
+        
+        
         linearCombinationTool.ComputeCommand = new Command(() =>
         {
             if (int.TryParse(linearCombinationTool.Inputs[0].Value, out int a) &&
@@ -86,51 +87,11 @@ public static class CreateTool
             }
         });
 
-        linearCombinationTool.ExplanationCommand = new Command(() => { });
-
+        linearCombinationTool.ExplanationCommand = new Command(() =>
+        {
+            
+        });
+        
         return linearCombinationTool;
     }
-    
-    public static Tool EulersTotientTool()
-    {
-        var EulersTotientTool = new Tool
-        {
-            Name = "φ(n)",
-            Title = "Eulers Totient: φ(n)",
-            HowItWorks = "Explanation here",
-            InputCount = 1,
-            Result = "Result: ",
-            Explanation = ""
-        };
-
-        for (int i = 0; i < EulersTotientTool.InputCount; i++)
-        {
-            InputItem item = new InputItem();
-            item.Value = "";
-            EulersTotientTool.Inputs.Add(item);
-        }
-
-        //add variable names
-        EulersTotientTool.Inputs[0].Label = "n";
-
-        EulersTotientTool.ComputeCommand = new Command(() =>
-        {
-            if (int.TryParse(EulersTotientTool.Inputs[0].Value, out int n))
-            {
-                int result = Calculations.EulersTotient(n);
-                EulersTotientTool.Result = "Result: " + result;
-            }
-            else
-            {
-                EulersTotientTool.Result = "Invalid input. Please enter valid numbers.";
-            }
-        });
-
-        EulersTotientTool.ExplanationCommand = new Command(() => { });
-
-        return EulersTotientTool;
-    }
-
-    
-    
 }
