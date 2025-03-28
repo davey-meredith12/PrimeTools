@@ -1,0 +1,9 @@
+*.dll
+*.class
+*.stamp
+*.java
+*.so
+*.ll
+*.o
+*.plist
+*.ttf

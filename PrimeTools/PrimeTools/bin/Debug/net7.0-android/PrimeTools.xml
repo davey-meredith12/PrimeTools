@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PrimeTools</name>
+    </assembly>
+    <members>
+        <member name="M:PrimeTools.Calculations.GCD(System.Int32,System.Int32)">
+            <summary>
+            Calculates the greatest common divisor between two numbers using the Euclidean Algorithm.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PrimeTools.Calculations.LinearCombination(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Solves ax + by = gcd(a, b). Stores the x and y result in the
+            variables x and y.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="x1"></param>
+            <param name="y"></param>
+        </member>
+    </members>
+</doc>
