@@ -1,4 +1,9 @@
-*.stamp
-*.o
-*.ll
-*.dll
+# Ignore everything
+*
+
+# Allow only .cs and .xml files
+!*.cs
+!*.xml
+
+# Allow directories (so Git can track files inside them)
+!*/
