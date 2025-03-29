@@ -18,14 +18,13 @@ public static class Calculations
         
         while (b != 0)  // Loop until b becomes 0
         {
-            explanation += $"gcd({a}, {b})\n";
             explanation += $"{a} = {b} * {a / b} + {a % b}\n";  // Show division and remainder
-            explanation += "\n";
 
             a = a % b;  // Perform modulo operation
             (a, b) = (b, a);  // Swap a and b to continue the algorithm
         }
 
+        explanation += "\n";
         explanation += $"So gcd is {a}";  // Final GCD value when b is 0
         return a;
     }
@@ -39,8 +38,10 @@ public static class Calculations
     /// <param name="b"></param>
     /// <param name="x1"></param>
     /// <param name="y"></param>
-    public static int LinearCombination(int a, int b, out int x, out int y)
+    public static int LinearCombination(int a, int b, out int x, out int y, out string explanation)
     {
+        explanation = "";
+    
         if (b == 0)
         {
             x = 1;
@@ -49,9 +50,15 @@ public static class Calculations
         }
 
         int x1, y1;
-        int gcd = LinearCombination(b, a%b, out x1, out y1);
+    
+        // Recursive call
+        int gcd = LinearCombination(b, a % b, out x1, out y1, out _);
+    
+        // Compute x and y
         x = y1;
         y = x1 - (a / b) * y1;
+
+        // Append explanation details
 
         return gcd;
     }
@@ -95,7 +102,7 @@ public static class Calculations
     /// <returns></returns>
     public static int CRT(int a, int b, int c, int d)
     {
-        LinearCombination(b, d, out int bInverse, out _);
+        LinearCombination(b, d, out int bInverse, out _, out _);
         int z = (((c-a) * bInverse) % d + d) % d; // do extra modulus work to stay positive
         int x = a + (b * z);
         return (x % (b * d) + (b * d)) % (b * d);

@@ -80,12 +80,14 @@ public static class CreateTool
             if (int.TryParse(linearCombinationTool.Inputs[0].Value, out int a) &&
                 int.TryParse(linearCombinationTool.Inputs[1].Value, out int b) && a > 0 && b > 0)
             {
-                Calculations.LinearCombination(a, b, out int x, out int y);
+                Calculations.LinearCombination(a, b, out int x, out int y, out string explanation);
                 linearCombinationTool.Result = "Result: x = " + x + ", y = " + y;
+                linearCombinationTool.Explanation = explanation;
             }
             else
             {
                 linearCombinationTool.Result = "Invalid input. Please enter valid numbers.";
+                linearCombinationTool.Explanation = "";
             }
         });
 
