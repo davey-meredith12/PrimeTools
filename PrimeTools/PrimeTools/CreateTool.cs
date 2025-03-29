@@ -32,12 +32,14 @@ public static class CreateTool
             if (int.TryParse(gcdTool.Inputs[0].Value, out int a) &&
                 int.TryParse(gcdTool.Inputs[1].Value, out int b) && a > 0 && b > 0)
             {
-                double gcd = Calculations.GCD(a, b);
+                double gcd = Calculations.GCD(a, b, out string explanation);
+                gcdTool.Explanation = explanation;
                 gcdTool.Result = "Result: gcd(" + a + ", " + b + ") = " + gcd;
             }
             else
             {
                 gcdTool.Result = "Invalid input. Please enter valid numbers.";
+                gcdTool.Explanation = "";
             }
         });
 
@@ -168,7 +170,7 @@ public static class CreateTool
                 int.TryParse(crtTool.Inputs[3].Value, out int d) &&
                 a >= 0 && b > 0 && c >= 0 && d > 0)
             {
-                if (Calculations.GCD(b, d) != 1)
+                if (Calculations.GCD(b, d, out _) != 1)
                 {
                     crtTool.Result = "b and d are not coprime, cannot compute.";
                 }

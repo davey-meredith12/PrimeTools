@@ -70,11 +70,19 @@
                        FontSize="18"
                        Margin="0,10,0,0" />
 
-                <!-- Explanation Button -->
+                <!--~1~ Explanation Button @1@
                 <Button Text="Explanation"
                         Command="{Binding SelectedTool.ExplanationCommand}"
                         Margin="0,10,0,0" 
-                        BackgroundColor="RoyalBlue"/>
+                        BackgroundColor="RoyalBlue"/>-->
+                
+                <Label Text="Explanation:" FontAttributes="Bold" Margin="0,10,0,0" />
+                
+                <ScrollView VerticalScrollBarVisibility="Always" HeightRequest="200">
+                    <Label Text="{Binding SelectedTool.Explanation}"
+                           LineBreakMode="WordWrap"/>
+                </ScrollView>
+                
             </StackLayout>
         </ContentView>
         

@@ -8,24 +8,28 @@ public static class Calculations
     /// <param name="a"></param>
     /// <param name="b"></param>
     /// <returns></returns>
-    public static int GCD(int a, int b)
+    public static int GCD(int a, int b, out string explanation)
     {
-        while (a != b)
+        if (a < b)
         {
-            //make a the larger one
-            if (a < b)
-            {
-                (a, b) = (b, a);
-            }
+            (a, b) = (b, a);
+        }
+        explanation = $"Solving gcd({a}, {b})\n \n";  // Initialize explanation string
+        
+        while (b != 0)  // Loop until b becomes 0
+        {
+            explanation += $"gcd({a}, {b})\n";
+            explanation += $"{a} = {b} * {a / b} + {a % b}\n";  // Show division and remainder
+            explanation += "\n";
 
-            int newA = b;
-            int newB = a - b;
-            a = newA;
-            b = newB;
+            a = a % b;  // Perform modulo operation
+            (a, b) = (b, a);  // Swap a and b to continue the algorithm
         }
 
+        explanation += $"So gcd is {a}";  // Final GCD value when b is 0
         return a;
     }
+
 
     /// <summary>
     /// Solves ax + by = gcd(a, b). Stores the x and y result in the

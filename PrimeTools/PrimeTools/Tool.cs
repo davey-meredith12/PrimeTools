@@ -48,8 +48,13 @@ public class Tool : INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
     protected void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    
-    public string Explanation { get; set; }
+
+    private string _explanation;
+    public string Explanation
+    {
+        get => _explanation;
+        set { _explanation = value; OnPropertyChanged(); }
+    }
 }
 
 
