@@ -145,7 +145,8 @@ public static class CreateTool
         {
             Name = "CRT",
             Title = "Chinese Remainder Theorem",
-            HowItWorks = "Explanation here",
+            HowItWorks = "Solves the system of equations for x in the form:\n x \u2261 a (mod b) \n x \u2261 c (mod d)\n \n" 
+                         + "b and d must be coprime (i.e. gcd(b, d) = 1) for there to be a unique solution.",
             InputCount = 4,
             Result = "Result: ",
             Explanation = ""
@@ -179,7 +180,7 @@ public static class CreateTool
                 else
                 {
                     int result = Calculations.CRT(a,b,c,d);
-                    crtTool.Result = "Result: " + result;
+                    crtTool.Result = "Result: x \u2261 " + result;
                 }
                 
                 
