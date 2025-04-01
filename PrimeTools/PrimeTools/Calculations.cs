@@ -103,9 +103,21 @@ public static class Calculations
     public static int CRT(int a, int b, int c, int d)
     {
         LinearCombination(b, d, out int bInverse, out _, out _);
+        Modulus((c - a * bInverse), d);
         int z = (((c-a) * bInverse) % d + d) % d; // do extra modulus work to stay positive
         int x = a + (b * z);
-        return (x % (b * d) + (b * d)) % (b * d);
+        return Modulus(x, b * d);
+    }
+
+    /// <summary>
+    /// Calculates a modulus b the math way to ensure that the result is always positive.
+    /// </summary>
+    /// <param name="a"> a number </param>
+    /// <param name="b"> the number to modulus by </param>
+    /// <returns></returns>
+    public static int Modulus(int a, int b)
+    {
+        return (a % b + b) % b;
     }
 
 }
